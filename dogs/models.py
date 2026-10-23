@@ -1,8 +1,8 @@
 from django.db import models
 
 
-# модель для породы
 class Breed(models.Model):
+    """-23- Модель для породы."""
     name = models.CharField(
         max_length=100,
         verbose_name="Название породы",
@@ -23,8 +23,8 @@ class Breed(models.Model):
         return self.name
 
 
-# модель для собаки
 class Dog(models.Model):
+    """-23- Модель для собаки."""
     name = models.CharField(
         max_length=100, verbose_name="Кличка", help_text="Введите кличку собаки"
     )
@@ -57,9 +57,10 @@ class Dog(models.Model):
         help_text="Укажите количество просмотров",
         default=0,
     )
-    """счётчик просмотров"""
 
     class Meta:
+        """-23- Класс реализует внутренние настройки (класс Meta)
+            и правило отображения (метод __str__) для модели Dog (Собака)."""
         verbose_name = "Собака"
         verbose_name_plural = "Собаки"
         ordering = ["breed", "name"]
@@ -69,6 +70,7 @@ class Dog(models.Model):
 
 
 class Parent(models.Model):
+    """-26- Класс Django (Model), которая описывает структуру таблицы в базе данных для сущности Parent (Родитель)."""
     dog = models.ForeignKey(
         Dog,
         related_name="parents",
@@ -97,7 +99,9 @@ class Parent(models.Model):
         blank=True,
     )
 
+
     class Meta:
+        """-26- Настройки отображения модели Parent (внутренний класс Meta) и её строковое представление."""
         verbose_name = "Собака родитель"
         verbose_name_plural = "Собаки родители"
         ordering = ["breed", "name"]
